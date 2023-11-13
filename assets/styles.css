@@ -2,6 +2,7 @@ body {
     background-color: blanchedalmond;
     margin: auto;
     text-align: center;
+    width: 50%;
 }
 .quiz-container {
     display: none;
@@ -54,4 +55,5 @@ h3 {
 #next-btn {
     display: none;
     margin-top: 10px;
+    text-align: center;
 }

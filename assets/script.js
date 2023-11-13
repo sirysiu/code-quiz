@@ -19,9 +19,9 @@ const questions = [
         
     },
     {
-        question: "What is HTML?",
-        choices:["Hyper Text Markup Language", "Hyper Tallie Makeup Language", "Javascript"],
-        correctAnswer:0 
+        question: "What is Javascrit?",
+        choices:["Hyper Text Markup Language", "Programming Language", "Computer"],
+        correctAnswer:1
 
 
     }
@@ -85,6 +85,8 @@ function showQuestion() {
 function checkAnswer (choiceIndex) {
     const isCorrect = choiceIndex === questions[currentQuestion].correctAnswer;
     let numCorrect = 0;
+    var score = 0;
+    var highscore = localStorage.getItem("highscore");
 
     if(isCorrect){
         choicesElement.innerHTML = '<p>Correct</p>'
@@ -102,8 +104,17 @@ function checkAnswer (choiceIndex) {
     if (isCorrect === currentQuestion.isCorrect) {
       // add to the number of correct answers
       numCorrect++;
-    }
+    } 
     highscore.innerHTML = `${numCorrect} out of ${questions.length}`;
+    if(highscore !== null){
+      if (score > highscore) {
+          localStorage.setItem("highscore", score);      
+      }
+  }
+  else{
+      localStorage.setItem("highscore", score);
+  }   
+  
 
     
 }
@@ -116,3 +127,13 @@ nextButton.addEventListener('click', () => {
 showQuestion()
 
 //add score at end
+
+// add.localstoarge
+
+function getTotal()
+{
+    var totalScore = getScore() + getScore();
+    document.getElementById('highscore').innerHTML = 
+       //"Your total score is: "+totalScore;
+       getComment(totalScore);
+}
