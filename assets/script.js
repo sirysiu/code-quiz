@@ -114,7 +114,21 @@ function checkAnswer (choiceIndex) {
   else{
       localStorage.setItem("highscore", score);
   }   
-  
+ 
+
+  if (isCorrect == false){
+  if(highscore !==null){
+      if(score > highscore) {
+          localStorage.setItem("highscore", score);
+      }
+  }
+  else{
+      localStorage.setItem("highscore", score);
+  }
+  }
+  else{
+      null;
+  }
 
     
 }
@@ -130,10 +144,10 @@ showQuestion()
 
 // add.localstoarge
 
-function getTotal()
-{
-    var totalScore = getScore() + getScore();
-    document.getElementById('highscore').innerHTML = 
-       //"Your total score is: "+totalScore;
-       getComment(totalScore);
-}
+// function getTotal()
+// {
+//     var totalScore = getScore() + getScore();
+//     document.getElementById('highscore').innerHTML = 
+//        //"Your total score is: "+totalScore;
+//        getComment(totalScore);
+// }
