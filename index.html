@@ -3,33 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Quiz</title>
-    <!--Add simply css-->
     <link rel="stylesheet" href="./assets/styles.css" /> 
-
+    <title>Code Quiz</title>
 </head>
 <body>
-    <div class = "container"></div>
-    <header>
-        <h1>Code Quiz Challenge</h1>
-    </header>
-    
-        <div class = "question-container"></div>
-        <div id="question" class=" question hide">Questions</div>
-        <div id = "answer-buttons" class="btn-grid"> </div>
-        <button id ="btn" class = "btn hide">Answer 1 </button>
-        <button id ="btn1" class = "btn hide">Answer 2 </button>
-        <button id ="btn2" class = "btn hide">Answer 3 </button>
-        <button id ="btn3" class = "btn hide">Answer 4 </button>
-    
-        
-        <div class = "controls">
-            <button id="start" class = "start-btn btn">Start Quiz</button>
-            <button id="next" class = "next-btn hide">Next</button>
-        </div>
-        
-    </div>
-    
+    <section>
+    <div class ="quiz-container" ></div>
+    <h3>Code Quiz</h3>
+</section>
+
+<section id = "boxs">
+    <p id = "question">
+    <div id = choices class = "choices"></div></p>
+</section>
+    <span id = "count">60</span> seconds
+    <button id = "start-btn" class = "btn" onclick="start()"> start</button>
+    <button id = "next-btn" class = "btn">Next </button>
 </body>
 <script src="./assets/script.js"></script>
 

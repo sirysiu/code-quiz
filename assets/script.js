@@ -1,55 +1,110 @@
-var startEl = document.getElementById('start')
-var btnEl = document.getElementById('btn')
-var btn1El = document.getElementById('btn1')
-var btn2El = document.getElementById('btn2')
-var btn3El = document.getElementById('btn3')
-var questionEl = document.getElementById('question')
-var nextEl = document.getElementById('next')
+const questionElement = document.getElementById('question')
+const choicesElement = document.getElementById('choices')
+const nextButton = document.getElementById('next-btn')
+const startButton = document.getElementById('start-btn')
 
-//click on start to test and it will be hidden
-start.addEventListener('click', () => {
-  // 👇️ hide button
-  start.style.display = 'none'
-  if (start.style.display === "none") {
-    btnEl.style.display= "block";
-    
-  }
-  if (start.style.display === "none") {
-    btn1El.style.display= "block";
-    
-  }
-  if (start.style.display === "none") {
-    btn2El.style.display= "block";
-    
-  }
-  if (start.style.display === "none") {
-    btn3El.style.display= "block";
-    
-  }
-  if (start.style.display === "none") {
-    questionEl.style.display = "block";
-    
-  }
-
-  if (start.style.display === "none") {
-    nextEl.style.display = "block";
-    
-  }
-
- });
+// question will be adde here
+const questions = [
+    {
+        question: "What is HTML?",
+        choices:["Hyper Text Markup Language", "Hyper Tallie Makeup Language", "Javascript"],
+        correctAnswer:0 
 
 
- //question will appear afterwards along with next btn
- //switch out btn tags to question
+    },
+    {
+        question: "What is CSS?",
+        choices:["Cascading Styling Sheet", "Programming", "Systematic Engineering"],
+        correctAnswer:0
+        
+    },
+    {
+        question: "What is HTML?",
+        choices:["Hyper Text Markup Language", "Hyper Tallie Makeup Language", "Javascript"],
+        correctAnswer:0 
 
- var question = [{
-    numb: 1,
-    question: "What does HTML stand for?",
-    answer: "Hyper Text Markup Language",
-    options: [
-      "Hyper Text Preprocessor",
-      "Hyper Text Markup Language",
-      "Hyper Text Multiple Language",
-      "Hyper Tool Multi Language"
-    ]
-}]
+
+    }
+
+];
+
+// set timer 
+
+function startTimer(){
+    var counter = 60;
+    setInterval(function() {
+        counter--;
+        if (counter >= 0 ){
+            span = document.getElementById('count');
+            span.innerHTML = counter;
+        }
+        if (counter === 0) {
+            alert ('sorry, out of time');
+            clearInterval(counter)
+        }
+    } ,1000 );
+}
+
+
+
+function start(){
+    document.getElementById('count')
+    startTimer();
+}
+
+// start button removed
+
+startButton.addEventListener('click', () => {
+    // 👇️ hide button
+    startButton.style.display = 'none'
+    if (startButton.style.display === "none") {
+      nextButton.style.display= "block";
+    }
+
+
+});
+
+//show question
+
+let currentQuestion= 0
+
+function showQuestion() {
+    const question = questions[currentQuestion]
+    questionElement.textContent = question.question
+    choicesElement.innerHTML= '';
+    question.choices.forEach((choice, index) => {
+        const choiceButton = document.createElement('button')
+        choiceButton.textContent = choice;
+        choiceButton.classList.add('btn')
+        choiceButton.addEventListener('click', () => checkAnswer(index))
+        choicesElement.appendChild(choiceButton)
+    })
+}
+
+// function to show wrong or correct
+function checkAnswer (choiceIndex) {
+    const isCorrect = choiceIndex === questions[currentQuestion].correctAnswer;
+
+    if(isCorrect){
+        choicesElement.innerHTML = '<p>Correct</p>'
+    } else {
+        choicesElement.innerHTML = '<p>wrong</p>'
+    }
+
+    currentQuestion++;
+    if (currentQuestion < questions.length){
+        nextButton.style.display = 'block'
+    } else {
+        nextButton.style.display = 'none'
+        choicesElement.innerHTML = '<p> quiz done</p>'
+    }
+
+    
+}
+
+nextButton.addEventListener('click', () => {
+    showQuestion()
+    nextButton.style.display = 'none'
+})
+
+showQuestion()
