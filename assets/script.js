@@ -84,6 +84,7 @@ function showQuestion() {
 // function to show wrong or correct
 function checkAnswer (choiceIndex) {
     const isCorrect = choiceIndex === questions[currentQuestion].correctAnswer;
+    let numCorrect = 0;
 
     if(isCorrect){
         choicesElement.innerHTML = '<p>Correct</p>'
@@ -98,6 +99,11 @@ function checkAnswer (choiceIndex) {
         nextButton.style.display = 'none'
         choicesElement.innerHTML = '<p> quiz done</p>'
     }
+    if (isCorrect === currentQuestion.isCorrect) {
+      // add to the number of correct answers
+      numCorrect++;
+    }
+    highscore.innerHTML = `${numCorrect} out of ${questions.length}`;
 
     
 }
@@ -108,3 +114,5 @@ nextButton.addEventListener('click', () => {
 })
 
 showQuestion()
+
+//add score at end
